@@ -3,8 +3,14 @@
     "manifest_version": 3,
     "name": "maquette extension",
     "description": "This is a Chrome extension built with React and TypeScript",
+    "side_panel": {
+        "default_path": "js/index.html"
+    },
     "action": {
-        "default_popup": "js/index.html",
-        "default_title": "maquette extension"
-    }
+        "default_title": "Click to open panel"
+    },
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+    "permissions": ["sidePanel", "contextMenus", "storage"]
 }

@@ -11,7 +11,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-const steps = ['Paramétrage', 'Transcription et synthèse', 'Envoie'];
+const steps = ['Paramétrage', 'Transcription et synthèse', 'Envoi'];
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -60,7 +60,7 @@ export default function HorizontalLinearStepper() {
   };
 
   const listNoms = () => {
-    return ['Adam', 'Adrien', 'Gaïa'];
+    return ['Adrien', 'Gaïa', 'Adam'];
   };
 
   const VisuallyHiddenInput = styled('input')({
@@ -78,28 +78,32 @@ export default function HorizontalLinearStepper() {
   const handleParametrage = () => {
     return (
       <React.Fragment>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: "20px" }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '20px' }}>
           <Button variant='contained' onClick={handleReset}>Revenir à 0</Button>
         </Box>
         <Box
           component="form"
-          sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+          sx={{ '& .MuiTextField-root': { m: 1, width: '30ch' } }}
           noValidate
-          autoComplete="on">
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          autoComplete="off">
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
             <TextField
               required
               id="outlined-basic"
               label="Type de ressource"
               variant="outlined"
+              sx={{ width: '250px' }}
             />
-            <ArrowForwardIcon sx={{ mx: 2 }} />
+            <ArrowForwardIcon />
             <Autocomplete
               disablePortal
               options={listNoms()}
-              renderInput={(params) => <TextField {...params} label="Type de ressource" />}
+              renderInput={(params) => (
+                <TextField {...params} label="Nom de la ressource" />
+              )}
             />
           </Box>
+
         </Box>
       </React.Fragment>
     );
@@ -157,13 +161,13 @@ export default function HorizontalLinearStepper() {
       </React.Fragment>
     );
   };
-  
-  
+
+
 
   const handleEnvoie = () => {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', gap: '20px', padding: '30px'}}>
-        <TextField 
+      <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', gap: '20px', padding: '30px' }}>
+        <TextField
           multiline
           fullWidth
           rows={4}
@@ -171,7 +175,7 @@ export default function HorizontalLinearStepper() {
           id="outlined-guidelines"
           label="Transcription"
         />
-        <TextField 
+        <TextField
           multiline
           fullWidth
           rows={4}
@@ -182,7 +186,7 @@ export default function HorizontalLinearStepper() {
       </Box>
     );
   };
-  
+
 
   const handleForm = () => {
     if (activeStep === 0) {
