@@ -15,7 +15,14 @@
     "@types/node": "^16.18.119",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "passport": "^0.7.0",
+    "passport-azure-ad": "^4.3.5",
     "react": "^18.3.1",
+    "react-audio-voice-recorder": "^2.2.0",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
@@ -28,7 +35,7 @@
     "watch": "webpack -w --config webpack.config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },  
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -48,13 +55,26 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "webpack": "^5.96.1",
-    "webpack-cli": "^5.1.4",
-    "@babel/plugin-proposal-private-property-in-object": "^7.16.7"
-  }
+    "webpack-cli": "^5.1.4"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamMam4/maquette-extension.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamMam4/maquette-extension/issues"
+  },
+  "homepage": "https://github.com/AdamMam4/maquette-extension#readme"
 }

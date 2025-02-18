@@ -10,12 +10,21 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Autocomplete from '@mui/material/Autocomplete';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+// import { AudioRecorder } from 'react-audio-voice-recorder';
 
 const steps = ['Paramétrage', 'Transcription et synthèse', 'Envoi'];
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
+  // const addAudioElement = (blob: Blob | MediaSource) => {
+  //   const url = URL.createObjectURL(blob);
+  //   const audio = document.createElement("audio");
+  //   audio.src = url;
+  //   audio.controls = true;
+  //   document.body.appendChild(audio);
+  // };
+
 
   const isStepOptional = (step: number) => {
     return step === 4; // 4 is the index of the optional step
@@ -63,6 +72,10 @@ export default function HorizontalLinearStepper() {
     return ['Adrien', 'Gaïa', 'Adam'];
   };
 
+  const listRessources = () => {
+    return ['Contact', 'Candidat', 'Ressource', 'Opportunité', 'Projet', 'Commande', 'Facture'];
+  };
+
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -87,19 +100,26 @@ export default function HorizontalLinearStepper() {
           noValidate
           autoComplete="off">
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
-            <TextField
-              required
-              id="outlined-basic"
-              label="Type de ressource"
-              variant="outlined"
+            <Autocomplete
+              disablePortal
+              options={listRessources()}
               sx={{ width: '250px' }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  required
+                  label="Type de ressource"
+                  variant="outlined"
+
+                />
+              )}
             />
             <ArrowForwardIcon />
             <Autocomplete
               disablePortal
               options={listNoms()}
               renderInput={(params) => (
-                <TextField {...params} label="Nom de la ressource" />
+                <TextField required {...params} label="Nom de la ressource" />
               )}
             />
           </Box>
@@ -110,6 +130,23 @@ export default function HorizontalLinearStepper() {
   };
 
   const handleTranscription = () => {
+    // const addAudioElement = (blob: Blob | MediaSource) => {
+    //   const url = URL.createObjectURL(blob);
+    //   const audio = document.createElement("audio");
+    //   audio.src = url;
+    //   audio.controls = true;
+    //   document.body.appendChild(audio);
+    // };
+    
+    // <AudioRecorder 
+    //   onRecordingComplete={addAudioElement}
+    //   audioTrackConstraints={{
+    //     noiseSuppression: true,
+    //     echoCancellation: true,
+    //   }} 
+    //   downloadOnSavePress={true}
+    //   downloadFileExtension="webm"
+    // />
     return (
       <React.Fragment>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: "20px" }}>
@@ -141,6 +178,8 @@ export default function HorizontalLinearStepper() {
                 variant="outlined"
                 sx={{ width: '50%', paddingRight: '50px' }} // Guidelines à 50% de la largeur de Type d'action
               />
+              <Button variant="contained" sx={{ padding: '10px' }}>Transcrire et synthétiser</Button>
+
               <Button
                 component="label"
                 variant="outlined"
@@ -155,6 +194,7 @@ export default function HorizontalLinearStepper() {
                 />
               </Button>
             </Box>
+            
             <Button variant="contained" sx={{ padding: '10px' }}>Transcrire et synthétiser</Button>
           </Box>
         </Box>
@@ -166,24 +206,29 @@ export default function HorizontalLinearStepper() {
 
   const handleEnvoie = () => {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', gap: '20px', padding: '30px' }}>
-        <TextField
-          multiline
-          fullWidth
-          rows={4}
-          maxRows={30}
-          id="outlined-guidelines"
-          label="Transcription"
-        />
-        <TextField
-          multiline
-          fullWidth
-          rows={4}
-          maxRows={30}
-          id="outlined-guidelines"
-          label="Synthèse"
-        />
-      </Box>
+      <React.Fragment>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '20px' }}>
+          <Button variant='contained' onClick={handleReset}>Revenir à 0</Button>
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', gap: '20px', padding: '30px' }}>
+          <TextField
+            multiline
+            fullWidth
+            rows={4}
+            maxRows={30}
+            id="outlined-guidelines"
+            label="Transcription"
+          />
+          <TextField
+            multiline
+            fullWidth
+            rows={4}
+            maxRows={30}
+            id="outlined-guidelines"
+            label="Synthèse"
+          />
+        </Box>
+      </React.Fragment>
     );
   };
 
